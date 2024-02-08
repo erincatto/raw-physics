@@ -1,9 +1,9 @@
 #ifndef RAW_PHYSICS_ENTITY_H
 #define RAW_PHYSICS_ENTITY_H
 
-#include <gm.h>
-#include "render/mesh.h"
-#include "physics/collider.h"
+#include "gm.h"
+#include "mesh.h"
+#include "collider.h"
 #include "quaternion.h"
 
 typedef u64 eid;

@@ -62,7 +62,7 @@ mat4 util_get_model_matrix_no_scale(const Quaternion* rotation, vec3 translation
 
 	mat4 rotation_matrix = quaternion_get_matrix(rotation);
 
-	mat4 translation_matrix = (mat4) {
+	mat4 translation_matrix = {
 		1.0, 0.0, 0.0, translation.x,
 		0.0, 1.0, 0.0, translation.y,
 		0.0, 0.0, 1.0, translation.z,
@@ -99,23 +99,23 @@ static boolean is_color_palette_initialized;
 
 vec4 util_pallete(u32 n) {
 	if (!is_color_palette_initialized) {
-		color_palette[0] = (vec4){1.0, 0.4, 0.4, 1.0};
-		color_palette[1] = (vec4){0.4, 1.0, 0.4, 1.0};
-		color_palette[2] = (vec4){0.4, 0.4, 1.0, 1.0};
-		color_palette[3] = (vec4){1.0, 1.0, 0.4, 1.0};
-		color_palette[4] = (vec4){0.4, 1.0, 1.0, 1.0};
-		color_palette[5] = (vec4){1.0, 0.4, 1.0, 1.0};
-		color_palette[6] = (vec4){1.0, 1.0, 1.0, 1.0};
-		color_palette[7] = (vec4){0.4, 0.4, 0.4, 1.0};
-		color_palette[8] = (vec4){1.0, 0.5, 0.4, 1.0};
-		color_palette[9] = (vec4){0.4, 1.0, 0.5, 1.0};
-		color_palette[10] = (vec4){0.5, 0.4, 1.0, 1.0};
-		color_palette[11] = (vec4){0.5, 1.0, 0.4, 1.0};
-		color_palette[12] = (vec4){0.4, 0.5, 1.0, 1.0};
-		color_palette[13] = (vec4){1.0, 0.4, 0.5, 1.0};
-		color_palette[14] = (vec4){1.0, 1.0, 0.5, 1.0};
-		color_palette[15] = (vec4){1.0, 0.5, 1.0, 1.0};
-		color_palette[16] = (vec4){0.5, 1.0, 1.0, 1.0};
+		color_palette[0] = {1.0, 0.4, 0.4, 1.0};
+		color_palette[1] = {0.4, 1.0, 0.4, 1.0};
+		color_palette[2] = {0.4, 0.4, 1.0, 1.0};
+		color_palette[3] = {1.0, 1.0, 0.4, 1.0};
+		color_palette[4] = {0.4, 1.0, 1.0, 1.0};
+		color_palette[5] = {1.0, 0.4, 1.0, 1.0};
+		color_palette[6] = {1.0, 1.0, 1.0, 1.0};
+		color_palette[7] = {0.4, 0.4, 0.4, 1.0};
+		color_palette[8] = {1.0, 0.5, 0.4, 1.0};
+		color_palette[9] = {0.4, 1.0, 0.5, 1.0};
+		color_palette[10] = {0.5, 0.4, 1.0, 1.0};
+		color_palette[11] = {0.5, 1.0, 0.4, 1.0};
+		color_palette[12] = {0.4, 0.5, 1.0, 1.0};
+		color_palette[13] = {1.0, 0.4, 0.5, 1.0};
+		color_palette[14] = {1.0, 1.0, 0.5, 1.0};
+		color_palette[15] = {1.0, 0.5, 1.0, 1.0};
+		color_palette[16] = {0.5, 1.0, 1.0, 1.0};
 		is_color_palette_initialized = true;
 	}
 

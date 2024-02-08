@@ -1,7 +1,7 @@
 #ifndef RAW_PHYSICS_CORE_H
 #define RAW_PHYSICS_CORE_H
 
-#include <common.h>
+#include "common.h"
 
 typedef int  (*Example_Init_Func)(void);
 typedef void (*Example_Destroy_Func)(void);

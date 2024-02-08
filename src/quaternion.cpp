@@ -31,14 +31,14 @@ Quaternion quaternion_new(vec3 axis, r64 angle) {
 }
 
 vec3 quaternion_get_right_inverted(const Quaternion* quat) {
-	return (vec3) {
+	return {
 		1.0 - 2.0 * quat->y * quat->y - 2.0 * quat->z * quat->z,
 		2.0 * quat->x * quat->y - 2.0 * quat->w * quat->z, 2.0 * quat->x * quat->z + 2.0 * quat->w * quat->y
 	};
 }
 
 vec3 quaternion_get_up_inverted(const Quaternion* quat) {
-	return (vec3) {
+	return {
 		2.0 * quat->x * quat->y + 2.0 * quat->w * quat->z, 
 		1.0 - (2.0 * quat->x * quat->x) - (2.0 * quat->z * quat->z),
 		2.0 * quat->y * quat->z - 2.0 * quat->w * quat->x
@@ -46,7 +46,7 @@ vec3 quaternion_get_up_inverted(const Quaternion* quat) {
 }
 
 vec3 quaternion_get_forward_inverted(const Quaternion* quat) {
-	return (vec3) {
+	return {
 		2.0 * quat->x * quat->z - 2.0 * quat->w * quat->y, 
 		2.0 * quat->y * quat->z + 2.0 * quat->w * quat->x, 
 		1.0 - (2.0 * quat->x * quat->x) - (2.0 * quat->y * quat->y)
@@ -54,7 +54,7 @@ vec3 quaternion_get_forward_inverted(const Quaternion* quat) {
 }
 
 vec3 quaternion_get_right(const Quaternion* quat) {
-	return (vec3) {
+	return {
 		1.0 - 2.0 * quat->y * quat->y - 2.0 * quat->z * quat->z,
 		2.0 * quat->x * quat->y - 2.0 * -quat->w * quat->z, 
 		2.0 * quat->x * quat->z + 2.0 * -quat->w * quat->y
@@ -62,7 +62,7 @@ vec3 quaternion_get_right(const Quaternion* quat) {
 }
 
 vec3 quaternion_get_up(const Quaternion* quat) {
-	return (vec3) {
+	return {
 		2.0 * quat->x * quat->y + 2.0 * -quat->w * quat->z, 
 		1.0 - (2.0 * quat->x * quat->x) - (2.0 * quat->z * quat->z),
 		2.0 * quat->y * quat->z - 2.0 * -quat->w * quat->x
@@ -70,7 +70,7 @@ vec3 quaternion_get_up(const Quaternion* quat) {
 }
 
 vec3 quaternion_get_forward(const Quaternion* quat) {
-	return (vec3) {
+	return {
 		2.0 * quat->x * quat->z - 2.0 * -quat->w * quat->y, 
 		2.0 * quat->y * quat->z + 2.0 * -quat->w * quat->x, 
 		1.0 - (2.0 * quat->x * quat->x) - (2.0 * quat->y * quat->y)
@@ -143,7 +143,7 @@ Quaternion quaternion_product(const Quaternion* q1, const Quaternion* q2) {
 
 Quaternion quaternion_normalize(const Quaternion* q) {
 	r64 len = sqrt(q->x * q->x + q->y * q->y + q->z * q->z + q->w * q->w);
-	return (Quaternion) { q->x / len, q->y / len, q->z / len, q->w / len };
+	return { q->x / len, q->y / len, q->z / len, q->w / len };
 }
 
 Quaternion quaternion_slerp(const Quaternion* _q1, const Quaternion* _q2, r64 t) {
@@ -260,7 +260,7 @@ vec3 quaternion_apply_to_vec3(const Quaternion* q, vec3 v) {
 	r64 iz = q->w * v.z + q->x * v.y - q->y * v.x;
 	r64 iw = - q->x * v.x - q->y * v.y - q->z * v.z;
 
-	return (vec3) {
+	return {
 		(ix * q->w) + (iw * -q->x) + (iy * -q->z) - (iz * -q->y),
 		(iy * q->w) + (iw * -q->y) + (iz * -q->x) - (ix * -q->z),
 		(iz * q->w) + (iw * -q->z) + (ix * -q->y) - (iy * -q->x)

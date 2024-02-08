@@ -1,6 +1,6 @@
 #ifndef RAW_PHYSICS_QUATERNION_H
 #define RAW_PHYSICS_QUATERNION_H
-#include <gm.h>
+#include "gm.h"
 
 typedef struct {
 	r64 x, y, z, w;
