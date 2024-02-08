@@ -3,22 +3,22 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #define GRAPHICS_MATH_IMPLEMENT
 #define C_FEK_HASH_MAP_IMPLEMENT
-#include <light_array.h>
-#include <stb_image.h>
-#include <stb_image_write.h>
-#include <hash_map.h>
+#include "light_array.h"
+#include "stb_image.h"
+#include "stb_image_write.h"
+#include "hash_map.h"
 
-#include <GL/glew.h>
+#include "glad/glad.h"
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include "core.h"
-#include <gm.h>
-#include "render/menu.h"
+#include "gm.h"
+#include "menu.h"
 
 #define WINDOW_TITLE "basic-engine"
 
-s32 window_width = 1366;
-s32 window_height = 768;
+s32 window_width = 1920;
+s32 window_height = 1080;
 GLFWwindow* main_window;
 
 static boolean key_state[1024];	// @TODO: Check range.
@@ -108,8 +108,11 @@ static GLFWwindow* init_glfw() {
 }
 
 static void init_glew() {
-	glewExperimental = true;
-	glewInit();
+	if (!gladLoadGL())
+	{
+		fprintf(stderr, "Failed to initialize glad\n");
+		glfwTerminate();
+	}
 }
 
 s32 main(s32 argc, s8** argv) {

@@ -1,7 +1,7 @@
 #ifndef RAW_PHYSICS_UTIL_H
 #define RAW_PHYSICS_UTIL_H
-#include <common.h>
-#include <gm.h>
+#include "common.h"
+#include "gm.h"
 #include "quaternion.h"
 
 s8* util_read_file(const s8* path, s32* file_length);

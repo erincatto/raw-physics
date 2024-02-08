@@ -1,6 +1,6 @@
 #include "entity.h"
-#include <light_array.h>
-#include <GL/glew.h>
+#include "light_array.h"
+#include "glad/glad.h"
 #include "hash_map.h"
 #include "util.h"
 
@@ -30,15 +30,15 @@ static eid entity_create_ex(Mesh mesh, vec3 world_position, Quaternion world_rot
 	entity->world_position = world_position;
 	entity->world_rotation = world_rotation;
 	entity->world_scale = world_scale;
-	entity->angular_velocity = (vec3){0.0, 0.0, 0.0};
-	entity->linear_velocity = (vec3){0.0, 0.0, 0.0};
-	entity->previous_angular_velocity = (vec3){0.0, 0.0, 0.0};
-	entity->previous_linear_velocity = (vec3){0.0, 0.0, 0.0};
+	entity->angular_velocity = vec3{0.0, 0.0, 0.0};
+	entity->linear_velocity = vec3{0.0, 0.0, 0.0};
+	entity->previous_angular_velocity = vec3{0.0, 0.0, 0.0};
+	entity->previous_linear_velocity = vec3{0.0, 0.0, 0.0};
 	entity->bounding_sphere_radius = colliders_get_bounding_sphere_radius(colliders);
 	if (is_fixed) {
 		entity->inverse_mass = 0.0;
-		entity->inertia_tensor = (mat3){0}; // this is not correct, but it shouldn't make a difference
-		entity->inverse_inertia_tensor = (mat3){0};
+		entity->inertia_tensor = {}; // this is not correct, but it shouldn't make a difference
+		entity->inverse_inertia_tensor = {};
 	} else {
 		entity->inverse_mass = 1.0 / mass;
 		entity->inertia_tensor = colliders_get_default_inertia_tensor(colliders, mass);
@@ -107,7 +107,7 @@ void entity_destroy(Entity* entity) {
 static mat4 entity_get_model_matrix_no_translation(const Entity* entity) {
 	r64 s, c;
 
-	mat4 scale_matrix = (mat4) {
+	mat4 scale_matrix = {
 		entity->world_scale.x, 0.0, 0.0, 0.0,
 		0.0, entity->world_scale.y, 0.0, 0.0,
 		0.0, 0.0, entity->world_scale.z, 0.0,
@@ -123,7 +123,7 @@ static mat4 entity_get_model_matrix_no_translation(const Entity* entity) {
 mat4 entity_get_model_matrix(const Entity* entity) {
 	r64 s, c;
 
-	mat4 scale_matrix = (mat4) {
+	mat4 scale_matrix =  {
 		entity->world_scale.x, 0.0, 0.0, 0.0,
 		0.0, entity->world_scale.y, 0.0, 0.0,
 		0.0, 0.0, entity->world_scale.z, 0.0,
@@ -132,7 +132,7 @@ mat4 entity_get_model_matrix(const Entity* entity) {
 
 	mat4 rotation_matrix = quaternion_get_matrix(&entity->world_rotation);
 
-	mat4 translation_matrix = (mat4) {
+	mat4 translation_matrix =  {
 		1.0, 0.0, 0.0, entity->world_position.x,
 		0.0, 1.0, 0.0, entity->world_position.y,
 		0.0, 0.0, 1.0, entity->world_position.z,
